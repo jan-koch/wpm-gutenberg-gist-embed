@@ -38,24 +38,11 @@ registerBlockType( 'wpm/block-wpmastery-code-block', {
     attributes: {
         gist_url: {
             type: 'string',
-            source: 'attributes',
+            /*source: 'attributes',
             selector: 'a',
-			attribute: 'href'
+			attribute: 'href'*/
         }
     },
-    edit({className, attributes, setAttributes}) {
-        return (
-            <p>Enter the gist url here:
-                <PlainText
-                    className={className}
-                    value={attributes.gist_url}
-                    onChange={(gist_url) => setAttributes({gist_url})}
-                />
-            </p>
-        );
-    },
-
-
     /**
      * The edit function describes the structure of your block in the context of the editor.
      * This represents what the editor will render when the block is used.
@@ -64,7 +51,17 @@ registerBlockType( 'wpm/block-wpmastery-code-block', {
      *
      * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
      */
-
+    edit({className, attributes, setAttributes}) {
+        return (
+            <p>Gist URL to embed:
+                <PlainText
+                    className={className}
+                    value={attributes.gist_url}
+                    onChange={(gist_url) => setAttributes({gist_url})}
+                />
+            </p>
+        );
+    },
     /**
      * The save function defines the way in which the different attributes should be combined
      * into the final markup, which is then serialized by Gutenberg into post_content.
@@ -73,8 +70,8 @@ registerBlockType( 'wpm/block-wpmastery-code-block', {
      *
      * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
      */
-    save({attributes}) {
+    save({className, attributes}) {
         //return <RichText.Content tagName="a" value={ attributes.gist_url } />;
-        return <p>My block:<a href={attributes.gist_url}>Open Gist here</a></p>;
+		return <script test className={className} src={attributes.gist_url + ".js"}></script>;
     }
 });
