@@ -11,7 +11,7 @@ import './editor.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { RichText, PlainText } = wp.editor;
+const { PlainText } = wp.editor;
 /**
  * Register: aa Gutenberg Block.
  *
@@ -37,10 +37,7 @@ registerBlockType( 'wpm/block-wpmastery-code-block', {
     ],
     attributes: {
         gist_url: {
-            type: 'string',
-            /*source: 'attributes',
-            selector: 'a',
-			attribute: 'href'*/
+            type: 'string'
         }
     },
     /**
